@@ -1,0 +1,121 @@
+import React, { useState } from 'react';
+import { Button, TextInput, Text, View, StyleSheet } from 'react-native';
+import Constants from 'expo-constants';
+const Separator = () => (
+  <View style={styles.separator} />
+);
+
+
+export default function App() {
+  const [x, setX] = useState(null);
+  const [y, setY] = useState(null);
+
+  const calcular = () => {
+    let resultado = x + y;
+    alert(`${x} + ${y} = ${resultado}`);
+    setX('');
+    setY('');
+  }
+
+  const cal_sub = () => {
+    let resultado = x - y;
+    alert(`${x} - ${y} = ${resultado}`);
+    setX('');
+    setY('');
+  }
+  const calc_mult = () => {
+    let resultado = x * y;
+    alert(`${x} X ${y} = ${resultado}`);
+    setX('');
+    setY('');
+  }
+
+  const calc_divisao = () => {
+    let resultado = x / y;
+    alert(`${x} / ${y} = ${resultado}`);
+    setX('');
+    setY('');
+  }
+  
+  const cal_area = () => {
+    let resultado = (x * y)/2;
+    alert(`Área = ${x} x ${y} / 2 =  A= ${resultado} m²`);
+    setX('');
+    setY('');
+    
+  };
+
+  return (
+    <View style={styles.container}>
+    <Text style={styles.baseText}>
+     <Text style={styles.innerText}> 1º Valor </Text>
+    </Text>
+      <TextInput
+        style={styles.textInput}
+        placeholder="Digite aqui"
+        onChangeText={(texto) => setX(parseInt(texto))}
+        value={x}
+    />
+    <Text style={styles.innerText}> 2º Valor </Text>
+      <TextInput
+        style={styles.textInput}
+        
+        placeholder="Digite aqui"
+        keyboardType="number-pad"
+        onChangeText={(texto) => setY(parseInt(texto))}
+        value={y}
+    />
+      <Button
+        onPress={calcular}
+        title="SOMAR"
+        color="#330066"
+      />
+      <Separator />
+      <Button
+        onPress={cal_sub}
+        title="SUBTRAIR"
+        color="#8000ff"
+      />
+        
+     <Button
+        onPress={calc_mult}
+        title="MULTIPLICAR"
+        color="#a64dff"
+      />
+      <Button
+        onPress={calc_divisao}
+        title="Dividir"
+        color="#a366ff"
+      />
+
+      <Button
+        onPress={cal_area}
+        title="CALCULAR   AREA"
+        color="#c299ff"
+      />
+    
+    </View>
+    
+    
+  );
+}
+
+
+const styles = StyleSheet.create({
+  container: {
+    paddingTop: Constants.statusBarHeight,
+    backgroundColor: '#260033',
+    padding: 50,
+    fontWeight: 'bold'
+  },
+  innerText: {
+    color: '#ffffff'
+  },
+ 
+  textInput: {
+    borderWidth: 2,
+    borderStyle: 'solid',
+    borderColor: '#ffffff',
+    borderRadius:4,
+  },
+});
